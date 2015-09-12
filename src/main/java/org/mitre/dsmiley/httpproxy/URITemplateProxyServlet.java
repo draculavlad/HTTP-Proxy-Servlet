@@ -8,8 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.*;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,8 +96,25 @@ public class URITemplateProxyServlet extends ProxyServlet {
     String newTargetUri = urlBuf.toString();
     servletRequest.setAttribute(ATTR_TARGET_URI, newTargetUri);
     URI targetUriObj;
+
+      StringBuilder finalUriBuilder = new StringBuilder("");
+      String httpPrefix = newTargetUri.startsWith("https://") ? "https://" : "http://";
+      String finalTagetUriSuffix = newTargetUri.replace("http://","").replace("https://","");
+      String[] unencodedUriPatterns = finalTagetUriSuffix.split("/");
+      for (int i = 0; i < unencodedUriPatterns.length; i++) {
+          if (i == 0){
+              finalUriBuilder.append(httpPrefix);
+              finalUriBuilder.append(unencodedUriPatterns[i]);
+          } else {
+              finalUriBuilder.append("/");
+              finalUriBuilder.append(URLEncoder.encode(unencodedUriPatterns[i]));
+          }
+      }
+      String finalTagetUri = finalUriBuilder.toString();
+
     try {
-      targetUriObj = new URI(newTargetUri);
+//      targetUriObj = new URI(newTargetUri);
+        targetUriObj = new URI(finalTagetUri);
     } catch (Exception e) {
       throw new ServletException("Rewritten targetUri is invalid: " + newTargetUri,e);
     }

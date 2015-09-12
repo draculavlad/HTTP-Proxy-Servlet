@@ -8,14 +8,16 @@
   </parent>
 
   <groupId>org.mitre.dsmiley.httpproxy</groupId>
-  <artifactId>smiley-http-proxy-servlet</artifactId>
-  <version>1.6</version>
+  <artifactId>smiley-http-proxy-servlet-x</artifactId>
+  <version>1.7</version>
   <packaging>jar</packaging>
 
   <name>Smiley's HTTP Proxy Servlet</name>
   <description>An HTTP Proxy (aka gateway) in the form of a Java servlet. An
     HTTP proxy is useful for AJAX applications to communicate with web
     accessible services on hosts other than where the web application is hosted.
+
+    A little modification for some simple usage.
   </description>
 
   <url>https://github.com/dsmiley/HTTP-Proxy-Servlet</url>
@@ -33,8 +35,23 @@
       <name>David Smiley</name>
       <email>dsmiley@mitre.org</email>
       <organization>MITRE</organization>
+      <roles>
+        <role>Owner</role>
+        <role>Original Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Jacob Su</name>
+      <email>450416583@qq.com</email>
+      <organization>None</organization>
+      <roles>
+        <role>User</role>
+        <role>Modifier</role>
+        <role>Developer</role>
+      </roles>
     </developer>
   </developers>
+
 
   <scm>
     <url>https://github.com/dsmiley/HTTP-Proxy-Servlet</url>
